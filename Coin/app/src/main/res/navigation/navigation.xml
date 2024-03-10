@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/databoard_fragment">
+
+    <fragment
+        android:id="@+id/databoard_fragment"
+        android:name="com.example.coin.view.DataBoardFragment"
+        android:label="@string/databoard"
+        tools:layout="@layout/fragment_databoard" >
+        <action
+            android:id="@+id/action_databoardFragment_to_choosePeriodDialogFragment"
+            app:destination="@id/custom_dialog_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/stats_fragment"
+        android:name="com.example.coin.view.StatsFragment"
+        android:label="@string/stats"
+        tools:layout="@layout/fragment_stats" />
+
+    <fragment
+        android:id="@+id/history_fragment"
+        android:name="com.example.coin.view.HistoryFragment"
+        android:label="@string/history"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/add_note_fragment"
+        android:name="com.example.coin.view.AddNoteFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_add_note" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_addCategoryFragment"
+            app:destination="@id/add_category_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.example.coin.view.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/add_category_fragment"
+        android:name="com.example.coin.view.AddCategoryFragment"
+        android:label="@string/categories"
+        tools:layout="@layout/fragment_add_category">
+        <action
+            android:id="@+id/action_addCategoryFragment_to_addNoteFragment"
+            app:destination="@id/add_note_fragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/custom_dialog_fragment"
+        android:name="com.example.coin.usecase.ShowChoosePeriodDialogUseCase"
+        android:label="ChoosePeriodDialogFragment"
+        tools:layout="@layout/dialog_fragment_choose_period">
+        <action
+            android:id="@+id/action_customDialogFragment_to_databoardFragment"
+            app:destination="@id/databoard_fragment" />
+    </dialog>
+
+</navigation>

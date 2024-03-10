@@ -1,0 +1,41 @@
+<resources>
+
+    <style name="Base.Theme.Coin" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorSurface">@color/gray_990</item> <!-- Цвет фона -->
+        <item name="colorSurfaceContainer">@color/gray_950</item> <!-- Цвет сard view контейнеров на фоне -->
+        <item name="colorSurfaceContainerHigh">@color/gray_950</item> <!-- Цвет фона MaterialAlertDialog -->
+        <item name="colorSurfaceContainerHighest">@color/gray_900</item> <!-- Цвет сard view находящихся на cardview-->
+        <item name="colorOnSurface">@color/gray_200</item> <!-- Цвет текста -->
+        <item name="colorSecondaryContainer">@color/blue_700</item> <!--Цвет выбранного овала в bottom nav view-->
+        <item name="colorOnSecondaryContainer">@color/light_blue_200</item> <!--Цвет выбранного значка в bottom nav view-->
+
+        <item name="colorPrimaryContainer">@color/blue_700</item> <!-- Цвет, в который окрашиваются нажатые кнопки-cardview -->
+        <item name="colorPrimary">@color/blue_800</item>
+        <item name="colorOnPrimary">@color/gray_200</item>
+        <item name="colorIncomes">@color/green_500</item>
+        <item name="colorExpenses">@color/red_300</item>
+
+
+
+    </style>
+
+    <style name="Theme.Coin" parent="Base.Theme.Coin">
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:fontFamily">@font/open_sans_600</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+</resources>
+
+    <!-- Primary brand color.
+            <item name="colorPrimary">@color/purple_200</item>
+            <item name="colorPrimaryVariant">@color/purple_700</item>
+            <item name="colorOnPrimary">@color/black</item>
+            <item name="colorText">@color/gray_200</item>
+
+            <item name="colorSecondary">@color/teal_200</item>
+            <item name="colorSecondaryVariant">@color/teal_200</item>
+            <item name="colorOnSecondary">@color/black</item> -->
