@@ -6,14 +6,7 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        getByName("debug") {
-            keyAlias = "TourBall"
-            storeFile = file("Z:\\androidKeyStore\\keystore.jks")
-            storePassword = "BelyashG1veMeY0urPuz1k0"
-            keyPassword = "BelyashG1veMeY0urPuz1k0"
-        }
-    }
+    
     namespace = "com.example.coin"
     compileSdk = 34
 
