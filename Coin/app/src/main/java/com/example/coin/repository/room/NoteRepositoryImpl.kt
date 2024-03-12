@@ -1,8 +1,6 @@
 package com.example.coin.repository.room
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import com.example.coin.R
 import com.example.coin.daos.NoteDao
 import com.example.coin.data.Note
 import javax.inject.Inject

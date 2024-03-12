@@ -9,12 +9,9 @@ import androidx.cardview.widget.CardView
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.coin.R
 import com.example.coin.data.Note
 import com.example.coin.repository.room.NoteRepository
-import com.example.coin.view.AddNoteFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

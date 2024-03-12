@@ -3,14 +3,13 @@ package com.example.coin.usecase
 import android.content.Context
 import com.example.coin.R
 import com.example.coin.data.Note
+import com.example.coin.repository.sharedprefs.spGetCurrencyName
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 
 fun updatePieChartSectionData(
-    notes: List<Note>?,
-    maxCategoriesCount: Int,
-    c: Context
+    notes: List<Note>?, maxCategoriesCount: Int, c: Context
 ): Pair<PieData, String> {
     val pieDataSet = PieDataSet(listOf(), "pie")
     pieDataSet.setDrawValues(false)
@@ -36,8 +35,7 @@ fun updatePieChartSectionData(
 
         //creating values which will be show in pie chart and description text with sums and category names
         val (entries, descriptionStr) = createPieChartEntries(
-            sortedTopCategoriesPairs,
-            maxCategoriesCount
+            sortedTopCategoriesPairs, maxCategoriesCount, c
         )
         pieDataSet.values = entries
 
@@ -60,27 +58,29 @@ private fun calculateTotalAmount(notes: List<Note>?): Map<String, Pair<Float, In
 }
 
 private fun createPieChartEntries(
-    pairs: List<Pair<String, Pair<Float, Int>>>,
-    maxCategoriesCount: Int
+    pairs: List<Pair<String, Pair<Float, Int>>>, maxCategoriesCount: Int, c: Context
 ): Pair<List<PieEntry>, String> {
     val entries = mutableListOf<PieEntry>()
     var descriptionStr = ""
+    val currencyName = spGetCurrencyName(c)
     if (pairs.isNotEmpty()) {
         for (i in 0 until minOf(pairs.size, maxCategoriesCount)) {
+
             entries.add(PieEntry(pairs[i].second.first, ""))
-            if (descriptionStr == "") {
-                descriptionStr = "${pairs[i].second.first} - ${pairs[i].first}"
-            } else {
-                descriptionStr += "\n\n${pairs[i].second.first} - ${pairs[i].first}"
+
+            if (descriptionStr != "") {
+                descriptionStr += "\n\n"
             }
+            descriptionStr += "${"%.2f".format(pairs[i].second.first)}$currencyName   ${pairs[i].first}"
+
         }
         if (pairs.size > maxCategoriesCount) {
             var sum = 0f
-            for (i in 3 until pairs.size) {
+            for (i in 4 until pairs.size) {
                 sum += pairs[i].second.first
             }
             entries.add(PieEntry(sum, ""))
-            descriptionStr += "\n\n$sum - other"
+            descriptionStr += "\n\n${"%.2f".format(sum)}$currencyName   ${c.getString(R.string.other)}"
         }
     }
     return Pair(entries, descriptionStr)

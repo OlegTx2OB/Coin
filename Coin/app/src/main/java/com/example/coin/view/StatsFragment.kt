@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.coin.R
-import com.example.coin.databinding.FragmentDataboardBinding
 import com.example.coin.databinding.FragmentStatsBinding
 import com.example.coin.viewmodel.StatsViewModel
 import com.github.mikephil.charting.charts.PieChart
@@ -27,13 +26,8 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
         setViewsPresets(binding)
         setupObservers(binding, mVM)
-        setupClickListeners(binding, mVM)
 
         return binding.root
-    }
-
-    private fun setupClickListeners(binding: FragmentStatsBinding, mVM: StatsViewModel) {
-
     }
 
     private fun setupObservers(binding: FragmentStatsBinding, mVM: StatsViewModel) = with(binding) {

@@ -41,17 +41,16 @@ class DataBoardFragment : Fragment(R.layout.fragment_databoard) {
     }
 
     private fun setupClickListeners(
-        binding: FragmentDataboardBinding,
-        mVM: DataBoardViewModel
+        binding: FragmentDataboardBinding, mVM: DataBoardViewModel
     ) {
         binding.topSectionLayout.cardviewChoosePeriod.setOnClickListener {
             val showChoosePeriodDialogUseCase = ShowChoosePeriodDialogUseCase(
                 layoutInflater.inflate(
-                    R.layout.dialog_fragment_choose_period,
-                    null
+                    R.layout.dialog_fragment_choose_period, null
                 ), requireContext()
             )
-            showChoosePeriodDialogUseCase.setDialogListener(object : ShowChoosePeriodDialogUseCase.DialogListener {
+            showChoosePeriodDialogUseCase.setDialogListener(object :
+                ShowChoosePeriodDialogUseCase.DialogListener {
                 override fun onDialogPositiveClick() {
                     mVM.updateData(mVM.mNotes)
                 }
@@ -60,52 +59,53 @@ class DataBoardFragment : Fragment(R.layout.fragment_databoard) {
         }
     }
 
-    private fun setupObservers(binding: FragmentDataboardBinding, mVM: DataBoardViewModel) = with(binding) {
+    private fun setupObservers(binding: FragmentDataboardBinding, mVM: DataBoardViewModel) =
+        with(binding) {
 
-        mVM.ldSetTimePeriod.observe(viewLifecycleOwner) {
-            topSectionLayout.periodText.text = it
-        }
-        mVM.ldSetIncBalance.observe(viewLifecycleOwner) {
-            topSectionLayout.tvIncomesValue.text = it
-        }
-        mVM.ldSetExpBalance.observe(viewLifecycleOwner) {
-            topSectionLayout.tvExpensesValue.text = it
-        }
-        mVM.ldSetTotalBalance.observe(viewLifecycleOwner) {
-            topSectionLayout.tvTotalBalanceValue.text = it
-        }
-        mVM.ldExpTopCategoriesText.observe(viewLifecycleOwner) {
-            expLayout.tvTopCategories.text = it
-        }
-        mVM.ldIncTopCategoriesText.observe(viewLifecycleOwner) {
-            incLayout.tvTopCategories.text = it
-        }
-        mVM.ldExpPieData.observe(viewLifecycleOwner) {
-            val expensesPie = expLayout.pieChart
-            expensesPie.data = it
-            expensesPie.notifyDataSetChanged()
-            expensesPie.invalidate()
-            expensesPie.visibility = View.VISIBLE
+            mVM.ldSetTimePeriod.observe(viewLifecycleOwner) {
+                topSectionLayout.periodText.text = it
+            }
+            mVM.ldSetIncBalance.observe(viewLifecycleOwner) {
+                topSectionLayout.tvIncomesValue.text = it
+            }
+            mVM.ldSetExpBalance.observe(viewLifecycleOwner) {
+                topSectionLayout.tvExpensesValue.text = it
+            }
+            mVM.ldSetTotalBalance.observe(viewLifecycleOwner) {
+                topSectionLayout.tvTotalBalanceValue.text = it
+            }
+            mVM.ldExpTopCategoriesText.observe(viewLifecycleOwner) {
+                expLayout.tvTopCategories.text = it
+            }
+            mVM.ldIncTopCategoriesText.observe(viewLifecycleOwner) {
+                incLayout.tvTopCategories.text = it
+            }
+            mVM.ldExpPieData.observe(viewLifecycleOwner) {
+                val expensesPie = expLayout.pieChart
+                expensesPie.data = it
+                expensesPie.notifyDataSetChanged()
+                expensesPie.invalidate()
+                expensesPie.visibility = View.VISIBLE
 
-            if (it.dataSet.entryCount != 0) {
-                expLayout.imageCross.visibility = View.INVISIBLE
-            } else {
-                expLayout.imageCross.visibility = View.VISIBLE
+                if (it.dataSet.entryCount != 0) {
+                    expLayout.imageCross.visibility = View.INVISIBLE
+                } else {
+                    expLayout.imageCross.visibility = View.VISIBLE
+                }
+            }
+            mVM.ldIncPieData.observe(viewLifecycleOwner) {
+                val incomesPie = incLayout.pieChart
+                incomesPie.data = it
+                incomesPie.notifyDataSetChanged()
+                incomesPie.invalidate()
+                incomesPie.visibility = View.VISIBLE
+                if (it.dataSet.entryCount != 0) {
+                    incLayout.imageCross.visibility = View.INVISIBLE
+                } else {
+                    incLayout.imageCross.visibility = View.VISIBLE
+                }
             }
         }
-        mVM.ldIncPieData.observe(viewLifecycleOwner) {
-            val incomesPie = incLayout.pieChart
-            incomesPie.data = it
-            incomesPie.notifyDataSetChanged()
-            incomesPie.invalidate()
-            incomesPie.visibility = View.VISIBLE
-            if (it.dataSet.entryCount != 0) {
-                incLayout.imageCross.visibility = View.INVISIBLE
-            } else {
-                incLayout.imageCross.visibility = View.VISIBLE
-            }
-        }
-    }
 
     private fun setPieOptions(pieChart: PieChart) {
         pieChart.holeRadius = 65f

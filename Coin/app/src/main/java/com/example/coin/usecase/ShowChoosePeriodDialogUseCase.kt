@@ -23,15 +23,13 @@ class ShowChoosePeriodDialogUseCase(private val layout: View, private val c: Con
         val yearPicker = layout.findViewById<NumberPicker>(R.id.year_picker)
         setViewsPresets(monthPicker, yearPicker)
 
-        builder.setView(layout)
-            .setTitle(c.getString(R.string.choose_date_period))
+        builder.setView(layout).setTitle(c.getString(R.string.choose_date_period))
             .setPositiveButton("OK") { dialog, _ ->
                 spSaveMonth(monthPicker.value, c)
                 spSaveYear(yearPicker.value, c)
                 listener?.onDialogPositiveClick()
                 dialog.dismiss()
-            }
-            .setNegativeButton(c.getString(R.string.cancel)) { dialog, _ ->
+            }.setNegativeButton(c.getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
 
@@ -40,7 +38,8 @@ class ShowChoosePeriodDialogUseCase(private val layout: View, private val c: Con
     }
 
     private fun setViewsPresets(monthPicker: NumberPicker, yearPicker: NumberPicker) {
-        val months = arrayOf("-",
+        val months = arrayOf(
+            "-",
             c.getString(R.string.jan), c.getString(R.string.feb),
             c.getString(R.string.mar), c.getString(R.string.apr),
             c.getString(R.string.may), c.getString(R.string.jun),

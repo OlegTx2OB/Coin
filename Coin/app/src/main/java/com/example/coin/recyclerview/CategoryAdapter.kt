@@ -9,14 +9,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coin.R
 import com.example.coin.data.Category
-import com.example.coin.data.Note
-import com.example.coin.databinding.FragmentAddNoteBinding
 import com.example.coin.databinding.RvCategoryBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CategoryAdapter(private val listener: ClickListener) : RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+class CategoryAdapter(private val listener: ClickListener) :
+    RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
 
     private val _ldDeleteCategoryFromRoom = MutableLiveData<Category>()
     val ldDeleteCategoryFromRoom: LiveData<Category> = _ldDeleteCategoryFromRoom

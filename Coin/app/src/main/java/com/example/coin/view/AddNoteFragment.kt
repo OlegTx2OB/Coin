@@ -22,7 +22,6 @@ import com.example.coin.R
 import com.example.coin.databinding.FragmentAddNoteBinding
 import com.example.coin.paintCardViews
 import com.example.coin.recyclerview.CategoryAdapter
-import com.example.coin.recyclerview.NoteAdapter
 import com.example.coin.recyclerview.SwipeToDeleteCallback
 import com.example.coin.repository.room.CategoryRepository
 import com.example.coin.viewmodel.AddNoteViewModel

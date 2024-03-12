@@ -46,4 +46,5 @@
     <string name="nov">Ноя</string>
     <string name="dec">Дек</string>
     <string name="cancel">Отмена</string>
+    <string name="other">прочее</string>
 </resources>

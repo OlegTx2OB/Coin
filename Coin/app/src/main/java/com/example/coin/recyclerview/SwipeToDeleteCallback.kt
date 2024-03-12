@@ -16,8 +16,8 @@ import kotlin.math.roundToInt
 abstract class SwipeToDeleteCallback(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
-    private val deleteIcon: Drawable = ContextCompat.getDrawable(context,
-        R.drawable.ic_vector_delete_white_40
+    private val deleteIcon: Drawable = ContextCompat.getDrawable(
+        context, R.drawable.ic_vector_delete_white_40
     )!!
     private val intrinsicWidth = deleteIcon.intrinsicWidth
     private val intrinsicHeight = deleteIcon.intrinsicHeight
@@ -76,7 +76,8 @@ abstract class SwipeToDeleteCallback(context: Context) :
         val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
         val deleteIconMargin = (itemHeight - intrinsicHeight) / 2
         val deleteIconLeft = (itemView.right - deleteIconMargin - 0.8 * intrinsicWidth).roundToInt()
-        val deleteIconRight = (itemView.right - deleteIconMargin + 0.2 * intrinsicWidth).roundToInt()
+        val deleteIconRight =
+            (itemView.right - deleteIconMargin + 0.2 * intrinsicWidth).roundToInt()
         val deleteIconBottom = deleteIconTop + intrinsicHeight
 
         // Draw the delete icon

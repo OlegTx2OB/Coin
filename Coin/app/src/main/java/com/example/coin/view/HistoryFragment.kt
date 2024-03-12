@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coin.R
 import com.example.coin.databinding.FragmentHistoryBinding
-import com.example.coin.recyclerview.CategoryAdapter
 import com.example.coin.recyclerview.NoteAdapter
 import com.example.coin.recyclerview.SwipeToDeleteCallback
 import com.example.coin.repository.room.NoteRepository
@@ -35,7 +34,7 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
             DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false)
 
         setViewsPresets(binding)
-        setupObservers(binding)
+        setupObservers()
         setupClickListeners(binding)
 
         return binding.root
@@ -55,7 +54,7 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
     }
 
-    private fun setupObservers(binding: FragmentHistoryBinding) {
+    private fun setupObservers() {
 
         mNoteRepository.getAllNotes().observe(viewLifecycleOwner) {
             mAdapter.addNotes(it)

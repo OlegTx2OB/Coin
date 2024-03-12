@@ -19,8 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class StatsViewModel @Inject constructor(
-    private val mNoteRepository: NoteRepository,
-    private val mApp: Application
+    private val mNoteRepository: NoteRepository, private val mApp: Application
 ) : AndroidViewModel(mApp) {
 
     private val _ldExpPieData = MutableLiveData<PieData>()
@@ -33,7 +32,7 @@ class StatsViewModel @Inject constructor(
     val ldExpTopCategoriesText: LiveData<String> = _ldExpTopCategoriesText
     val ldIncTopCategoriesText: LiveData<String> = _ldIncTopCategoriesText
 
-    var mNotes: List<Note>? = null
+    private var mNotes: List<Note>? = null
 
     init {
         mNoteRepository.getAllNotes().observeForever {
@@ -50,19 +49,17 @@ class StatsViewModel @Inject constructor(
 
         CoroutineScope(Dispatchers.Main).launch {
             val incomesNotes = notes?.filter {
-                it.isIncomes == true &&
-                        it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
+                it.isIncomes == true && it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
             }
             val expensesNotes = notes?.filter {
-                it.isIncomes == false &&
-                        it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
+                it.isIncomes == false && it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
             }
 
             var incomesPair: Pair<PieData, String>? = null
             var expensesPair: Pair<PieData, String>? = null
 
             val job = CoroutineScope(Dispatchers.Default).launch {
-                incomesPair = updatePieChartSectionData(incomesNotes,15, mApp)
+                incomesPair = updatePieChartSectionData(incomesNotes, 15, mApp)
                 expensesPair = updatePieChartSectionData(expensesNotes, 15, mApp)
             }
 

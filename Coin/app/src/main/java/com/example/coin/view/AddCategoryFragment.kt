@@ -22,8 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddCategoryFragment : Fragment(R.layout.fragment_add_category) {
     private val mVM: AddCategoryViewModel by viewModels()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding: FragmentAddCategoryBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
@@ -36,15 +35,15 @@ class AddCategoryFragment : Fragment(R.layout.fragment_add_category) {
     }
 
     private fun setupClickListeners(
-        binding: FragmentAddCategoryBinding,
-        mVM: AddCategoryViewModel
+        binding: FragmentAddCategoryBinding, mVM: AddCategoryViewModel
     ) {
         colorCardsListener(binding, mVM)
         categoriesCardsListener(binding, mVM)
 
         binding.addCategoryButton.cardviewAdd.setOnClickListener {
             val pairOfIsSavedAndToast = mVM.onAddCardviewAndReturnResult()
-            Toast.makeText(requireContext(), pairOfIsSavedAndToast.second, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), pairOfIsSavedAndToast.second, Toast.LENGTH_SHORT)
+                .show()
             if (pairOfIsSavedAndToast.first == true) {
                 findNavController().navigate(R.id.action_addCategoryFragment_to_addNoteFragment)
             }
@@ -53,8 +52,7 @@ class AddCategoryFragment : Fragment(R.layout.fragment_add_category) {
     }
 
     private fun categoriesCardsListener(
-        binding: FragmentAddCategoryBinding,
-        mVM: AddCategoryViewModel
+        binding: FragmentAddCategoryBinding, mVM: AddCategoryViewModel
     ) {
         val categoryCardsRoot = binding.cardviewCategories.cardsRootLayout
         val categoryCards = mutableListOf<View>()
@@ -83,8 +81,7 @@ class AddCategoryFragment : Fragment(R.layout.fragment_add_category) {
     }
 
     private fun colorCardsListener(
-        binding: FragmentAddCategoryBinding,
-        mVM: AddCategoryViewModel
+        binding: FragmentAddCategoryBinding, mVM: AddCategoryViewModel
     ) {
         val colorCardsRoot = binding.cardviewColors.colorCardsParent
         val colorCards = mutableListOf<View>()

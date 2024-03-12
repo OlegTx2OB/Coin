@@ -62,12 +62,10 @@ class DataBoardViewModel @Inject constructor(
 
         CoroutineScope(Dispatchers.Main).launch {
             val incomesNotes = notes?.filter {
-                it.isIncomes == true &&
-                        it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
+                it.isIncomes == true && it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
             }
             val expensesNotes = notes?.filter {
-                it.isIncomes == false &&
-                        it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
+                it.isIncomes == false && it.epochDay!! in epochDayStartPeriod until epochDayEndPeriod
             }
 
             CoroutineScope(Dispatchers.Main).launch {
@@ -93,6 +91,7 @@ class DataBoardViewModel @Inject constructor(
         }
 
     }
+
     private fun setPeriodText(month: Int, year: Int) {
         //month == 0 means that month is not chosen
         _ldSetTimePeriod.value = if (month == 0) {
@@ -103,20 +102,19 @@ class DataBoardViewModel @Inject constructor(
     }
 
 
-
     private fun setBalances(incomesNotes: List<Note>?, expensesNotes: List<Note>?) {
         var incomesBalance = 0f
         var expensesBalance = 0f
         if (incomesNotes != null) {
             for (note in incomesNotes) incomesBalance += note.amount!!
-            _ldSetIncBalance.value = incomesBalance.toString()
+            _ldSetIncBalance.value = "%.2f".format(incomesBalance)
         }
         if (expensesNotes != null) {
             for (note in expensesNotes) expensesBalance += note.amount!!
-            _ldSetExpBalance.value = expensesBalance.toString()
+            _ldSetExpBalance.value = "%.2f".format(expensesBalance)
         }
         _ldSetTotalBalance.value =
-            (incomesBalance - expensesBalance).toString() + spGetCurrencyName(mApp)
+            "%.2f".format((incomesBalance - expensesBalance)) + spGetCurrencyName(mApp)
     }
 
 }

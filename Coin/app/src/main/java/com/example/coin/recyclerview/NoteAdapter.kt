@@ -3,7 +3,6 @@ package com.example.coin.recyclerview
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +51,8 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.rv_history_note, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.rv_history_note, parent, false)
         return NoteHolder(view)
     }
 

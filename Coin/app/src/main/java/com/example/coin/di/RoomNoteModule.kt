@@ -18,11 +18,7 @@ object RoomNoteModule {
     @Provides
     fun provideRoomDB(@ApplicationContext context: Context): NoteDao {
         return Room.databaseBuilder(
-            context,
-            NotesDataBase::class.java, "roomDBNotes"
-        )
-            .allowMainThreadQueries()
-            .build()
-            .notesDao()
+            context, NotesDataBase::class.java, "roomDBNotes"
+        ).allowMainThreadQueries().build().notesDao()
     }
 }
