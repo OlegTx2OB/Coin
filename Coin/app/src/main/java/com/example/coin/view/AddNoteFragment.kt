@@ -48,7 +48,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), CategoryAdapter.Cl
             DataBindingUtil.inflate(inflater, R.layout.fragment_add_note, container, false)
 
         mRecyclerView = binding.cardCategories.recyclerView
-
+        setActiveExpensesButton(binding.cardviewIncExp.cardviewExpenses, binding, mVM)
         setViewsPresets(binding)
         setupClickListeners(binding, mVM)
         setupObservers(binding, mVM)
@@ -65,6 +65,16 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), CategoryAdapter.Cl
         mVM.onCategory(view)
     }
 
+    private fun setActiveExpensesButton(view: View, binding: FragmentAddNoteBinding, mVM: AddNoteViewModel) {
+        mVM.onCardViewIncExp(false)
+        paintCardViews(
+            listOf(binding.cardviewIncExp.cardviewIncomes),
+            COLOR_ATTR_UNPRESSED_CARD,
+            requireContext()
+        )
+        paintCardViews(listOf(view as CardView), COLOR_ATTR_PRESSED_CARD, requireContext())
+    }
+
     private fun setupClickListeners(
         binding: FragmentAddNoteBinding,
         mVM: AddNoteViewModel,
@@ -79,13 +89,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), CategoryAdapter.Cl
         itemTouchHelper.attachToRecyclerView(binding.cardCategories.recyclerView)
 
         binding.cardviewIncExp.cardviewExpenses.setOnClickListener {
-            mVM.onCardViewIncExp(false)
-            paintCardViews(
-                listOf(binding.cardviewIncExp.cardviewIncomes),
-                COLOR_ATTR_UNPRESSED_CARD,
-                requireContext()
-            )
-            paintCardViews(listOf(it as CardView), COLOR_ATTR_PRESSED_CARD, requireContext())
+            setActiveExpensesButton(it, binding, mVM)
         }
         binding.cardviewIncExp.cardviewIncomes.setOnClickListener {
             mVM.onCardViewIncExp(true)

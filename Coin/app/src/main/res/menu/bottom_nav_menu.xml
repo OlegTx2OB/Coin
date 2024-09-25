@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/databoard_fragment"
-        android:icon="@drawable/selector_home"
-        android:title="@string/databoard" />
-
-    <item
         android:id="@+id/add_note_fragment"
         android:icon="@drawable/selector_plus"
         android:title="@string/add" />
+
+    <item
+        android:id="@+id/databoard_fragment"
+        android:icon="@drawable/selector_home"
+        android:title="@string/databoard" />
 
     <item
         android:id="@+id/stats_fragment"

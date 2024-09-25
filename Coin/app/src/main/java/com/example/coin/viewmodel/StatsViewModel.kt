@@ -59,8 +59,8 @@ class StatsViewModel @Inject constructor(
             var expensesPair: Pair<PieData, String>? = null
 
             val job = CoroutineScope(Dispatchers.Default).launch {
-                incomesPair = updatePieChartSectionData(incomesNotes, 15, mApp)
-                expensesPair = updatePieChartSectionData(expensesNotes, 15, mApp)
+                incomesPair = updatePieChartSectionData(incomesNotes, 50, mApp)
+                expensesPair = updatePieChartSectionData(expensesNotes, 50, mApp)
             }
 
             CoroutineScope(Dispatchers.Main).launch {
